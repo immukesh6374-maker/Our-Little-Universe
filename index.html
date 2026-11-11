@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff0f3">
+
+    <title>Our Little Universe | Mukesh & Sadhanasri ❤️</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- MUSIC NOTE STYLING -->
+    <style>
+        .music-control {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8fab, #e75480);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(231, 84, 128, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.12);
+        }
+
+        .music-control.playing i {
+            animation: musicRotate 3s linear infinite;
+        }
+
+        @keyframes musicRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .music-control {
+                width: 43px;
+                height: 43px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="backgroundMusic" loop preload="auto">
+        <source src="assets/music/naan-un.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING MUSIC NOTE -->
+    <button
+        class="music-control"
+        id="musicControl"
+        aria-label="Mute background music"
+        title="Mute or unmute music">
+
+        <i class="fa-solid fa-music"></i>
+
+    </button>
+
+
+    <!-- FLOATING HEARTS -->
+    <div class="hearts-container" id="hearts-container"></div>
+
+
+    <!-- OPENING SCREEN -->
+    <section class="opening-screen" id="opening-screen">
+
+        <div class="opening-content">
+
+            <p class="small-heading">
+                A LITTLE WORLD MADE JUST FOR YOU
+            </p>
+
+            <div class="envelope" id="envelope">
+
+                <div class="envelope-back"></div>
+
+                <div class="letter">
+
+                    <i class="fa-solid fa-heart"></i>
+
+                    <h2>For You</h2>
+
+                    <p>My Dearest Sadhanasri</p>
+
+                </div>
+
+                <div class="envelope-front"></div>
+
+                <div class="envelope-flap"></div>
+
+            </div>
+
+            <h1 class="main-title">
+                Hey, Beautiful!
+            </h1>
+
+            <p class="subtitle">
+                One year, countless memories, and a story
+                that I never want to end.
+            </p>
+
+            <button class="open-button" id="open-button">
+
+                Open Your Surprise
+
+                <i class="fa-solid fa-heart"></i>
+
+            </button>
+
+            <p class="bottom-note">
+                Made with endless love by Mukesh ❤️
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN WEBSITE -->
+    <main id="main-website" class="hidden">
+
+
+        <!-- BIRTHDAY SECTION -->
+        <section class="birthday-section chapter-screen active" id="birthday" data-chapter="birthday">
+
+            <div class="birthday-content">
+
+                <p class="small-heading">
+                    TODAY IS ALL ABOUT YOU
+                </p>
+
+                <h1>Happy Birthday</h1>
+
+                <h2>Sadhanasri ❤️</h2>
+
+                <p>
+                    Welcome to our little universe,
+                    where every memory has a story
+                    and every story begins with you.
+                </p>
+
+                <button class="explore-button"
+                    id="birthday-next">
+
+                    Let's Begin Our Story
+
+                    <i class="fa-solid fa-heart"></i>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEMORY SCRAPBOOK -->
+        <section class="memories-section chapter-screen" id="memories" data-chapter="memories">
+
+            <div class="section-heading">
+
+                <p class="small-heading">
+                    CHAPTER 01 — OUR JOURNEY
+                </p>
+
+                <h2>Little Moments,</h2>
+
+                <h3>Forever Memories ❤️</h3>
+
+                <p>
+                    Every picture holds a story.
+                    Every story holds a piece of us.
+                </p>
+
+            </div>
+
+
+            <div class="memory-slider">
+
+                <button class="slider-btn" id="prev-btn"
+                    aria-label="Previous photograph">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+
+                <div class="memory-track" id="memory-track">
+                </div>
+
+
+                <button class="slider-btn" id="next-btn"
+                    aria-label="Next photograph">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="slider-dots" id="slider-dots"></div>
+
+
+            <p class="memory-footer">
+                And our story is still being written... ❤️
+            </p>
+
+            <div class="chapter-actions">
+                <button class="chapter-button secondary" data-prev="birthday">← Previous</button>
+                <button class="chapter-button" data-next="story">Our Story →</button>
+            </div>
+
+        </section>
+
+
+        <!-- STORY INTRODUCTION -->
+        <section class="story-section chapter-screen" id="story" data-chapter="story">
+
+            <p class="small-heading">
+                CHAPTER 02 — OUR STORY
+            </p>
+
+            <h2>It All Started With A Hello...</h2>
+
+            <p>
+                Two people started talking without knowing
+                how important they would become to each other.
+            </p>
+
+            <div class="story-card">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                <h3>From WhatsApp to Forever</h3>
+
+                <p>
+                    What started as simple conversations
+                    slowly became endless calls,
+                    countless stories and a beautiful bond.
+                </p>
+
+            </div>
+
+            <div class="story-card">
+
+                <i class="fa-solid fa-heart"></i>
+
+                <h3>My Most Trusted Person</h3>
+
+                <p>
+                    I never planned to fall in love.
+                    But I found someone I could trust,
+                    someone who believed in me
+                    and someone who accepted me.
+                </p>
+
+            </div>
+
+            <div class="story-card">
+
+                <i class="fa-solid fa-infinity"></i>
+
+                <h3>One Year, One Beautiful Journey</h3>
+
+                <p>
+                    We have had beautiful moments,
+                    difficult moments and everything in between.
+                    Yet our story continues.
+                </p>
+
+            </div>
+
+            <div class="story-step-note" id="story-step-note">Chapter 1 of 3</div>
+            <div class="chapter-actions">
+                <button class="chapter-button secondary" data-prev="memories">← Previous</button>
+                <button class="chapter-button" id="story-next">Next part →</button>
+            </div>
+
+        </section>
+
+
+        <!-- REASONS I LOVE YOU -->
+        <section class="reasons-section chapter-screen" id="reasons" data-chapter="reasons">
+            <div class="chapter-inner">
+                <p class="small-heading">CHAPTER 03 — A FEW REASONS</p>
+                <h2 class="script-heading">Reasons I Love You</h2>
+                <p class="chapter-intro">Tap each little note. There are so many things I adore about you.</p>
+                <div class="reason-grid" id="reason-grid"></div>
+                <div class="chapter-actions">
+                    <button class="chapter-button secondary" data-prev="story">← Previous</button>
+                    <button class="chapter-button" data-next="letter">A letter for you →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- HANDWRITTEN LOVE LETTER -->
+        <section class="letter-section chapter-screen" id="letter" data-chapter="letter">
+            <div class="chapter-inner">
+                <p class="small-heading">CHAPTER 05 — FROM MY HEART</p>
+                <h2 class="script-heading">A Letter, Just for You</h2>
+                <p class="chapter-intro">I wrote these words with you in my heart. Open it when you're ready.</p>
+                <div class="letter-envelope-wrap">
+                    <div class="letter-envelope" id="love-envelope" role="group" aria-label="A sealed love letter">
+                        <div class="love-envelope-back"></div>
+                        <div class="love-paper" id="love-paper">
+                            <button type="button" class="letter-close" id="close-love-letter" aria-label="Close love letter">×</button>
+                            <div class="paper-content">
+                                <p class="letter-date">To my dearest Sadhanasri,</p>
+                                <div id="typed-letter" class="typed-letter"></div>
+                                <p class="handwritten-signature">Forever yours,<br>Mukesh ❤️</p>
+                            </div>
+                        </div>
+                        <div class="love-envelope-front"></div>
+                        <div class="love-envelope-flap"></div>
+                        <div class="envelope-seal">♥</div>
+                    </div>
+                </div>
+                <button class="chapter-button" id="open-love-letter">Open Your Letter 💌</button>
+                <p class="letter-hint" id="letter-hint">A little piece of my heart is waiting inside.</p>
+                <div class="chapter-actions">
+                    <button class="chapter-button secondary" data-prev="reasons">← Previous</button>
+                    <button class="chapter-button" data-next="promises">Read my promises →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY PROMISES -->
+        <section class="promises-section chapter-screen" id="promises" data-chapter="promises">
+            <div class="chapter-inner">
+                <p class="small-heading">CHAPTER 06 — ALWAYS, WITH YOU</p>
+                <h2 class="script-heading">Little Promises, From My Heart</h2>
+                <p class="chapter-intro">Not perfect promises. Honest ones I want to keep choosing every day.</p>
+                <div class="promise-card" id="promise-card" aria-live="polite"></div>
+                <div class="promise-progress" id="promise-progress">Promise 1 of 5</div>
+                <div class="chapter-actions">
+                    <button class="chapter-button secondary" data-prev="letter">← Previous</button>
+                    <button class="chapter-button" id="promise-next">Next promise →</button>
+                </div>
+                <button class="chapter-button final-promise-next" data-next="final">Our final surprise ✨</button>
+            </div>
+        </section>
+
+
+        <!-- FINAL SURPRISE: THE LITTLE PROPOSAL -->
+        <section class="final-section chapter-screen" id="final" data-chapter="final">
+            <div class="proposal-wrap" id="proposal-wrap">
+                <div class="proposal-stars" aria-hidden="true"></div>
+                <p class="proposal-kicker">ONE LAST LITTLE SURPRISE ✨</p>
+                <h2 class="proposal-intro">Before this birthday ends...</h2>
+                <p class="proposal-subtitle">I have one special question for you.</p>
+                <div class="proposal-heart" aria-hidden="true">♡</div>
+                <div class="proposal-question-card">
+                    <p>Can you spend the rest of your birthdays with me as my life partner?</p>
+                    <span>♡</span>
+                </div>
+                <div class="proposal-buttons" id="proposal-buttons">
+                    <button class="proposal-yes" id="proposal-yes">YES ❤️</button>
+                    <button class="proposal-no" id="proposal-no">NO 🥺</button>
+                </div>
+                <p class="proposal-hint" id="proposal-hint" aria-live="polite"></p>
+                <p class="proposal-signoff">With all my heart, <span>Mukesh</span></p>
+                <div class="proposal-nav">
+                    <button class="chapter-button secondary" data-prev="promises">← Previous</button>
+                </div>
+            </div>
+
+            <!-- YES opens a full-screen romantic rose-petal and heart overlay -->
+            <div class="proposal-ending" id="proposal-ending" aria-hidden="true">
+                <button type="button" class="proposal-close" id="proposal-close" aria-label="Close surprise">×</button>
+                <div class="petal-heart-field" id="petal-heart-field" aria-hidden="true"></div>
+                <div class="proposal-love-message">
+                    <p class="proposal-love-kicker">A little promise from my heart</p>
+                    <h2>LOVE YOU MA <span>❤️</span></h2>
+                    <p>Today, tomorrow and forever.</p>
+                    <div class="proposal-love-divider">✦　♡　✦</div>
+                    <p class="proposal-love-sign">— Mukesh</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="js/script.js"></script>
+
+
+
+</body>
+</html>
